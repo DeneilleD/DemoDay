@@ -1,0 +1,14 @@
+body{
+  padding-top:80px;
+  word-wrap:break-word;
+}
+img{
+  height: 200px;
+}
+
+.blue{
+  color:rgb(33, 33, 230);
+}
+/* .well{
+  display:none;
+} */
