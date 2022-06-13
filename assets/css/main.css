@@ -92,7 +92,8 @@ background-image: linear-gradient(315deg, #f3e6e8 0%, #d5d0e5 74%); }
 
 /* Type */
 body, input, select, textarea {
-  color: #7f888f;
+  background:#40065bf3;
+  color: #f9fcfe;
   font-family: "Open Sans", sans-serif;
   font-size: 13pt;
   font-weight: 400;
@@ -124,7 +125,7 @@ a {
       color: inherit; }
 
 strong, b {
-  color: #6b426f;
+  color:  #f508b6ad;
   font-weight: 600; }
 
 em, i {
@@ -134,7 +135,7 @@ p {
   margin: 0 0 2em 0; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #3d4449;
+  color: #f508b6ad;
   font-family: "Roboto Slab", serif;
   font-weight: 700;
   line-height: 1.5;
