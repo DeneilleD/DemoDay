@@ -112,8 +112,13 @@ let colors = {
   db.collection('entries').insertOne({date: req.body.date, title: req.body.title, caption: req.body.caption, postedBy: user, currentMood: userInput, color: color, scale:scale}, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
+    alert('new entry posted')
+
     res.redirect('/profile')
+    
   })
+  alert('new entry posted')
+
 })
 
 
@@ -125,6 +130,7 @@ let colors = {
         console.log('saved to database')
         res.redirect('/profile')
       })
+
     })
 
     app.put('/messages', (req, res) => {

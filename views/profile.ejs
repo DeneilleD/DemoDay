@@ -4,6 +4,10 @@
     <title>The Safe Space</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Beau+Rivage&family=Bubblegum+Sans&family=Dancing+Script&family=Pacifico&family=Playfair+Display:ital@1&family=Roboto+Condensed&family=Rubik+Bubbles&family=Source+Sans+Pro:wght@200&family=Square+Peg&family=Tapestry&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -50,13 +54,13 @@
           <h2 class="profileheader">Let it out.. </h2>
         <% if (user.local.email) { %>
           <form action="/makePost" method="POST" id="profileform">
-            <input type="date" name="date" placeholder="date">
+            <input type="date" name="date" placeholder="date" id="date">
             <input type="text" name="title" placeholder="title" id="title">
             <input id="caption" type="text" name="caption" placeholder="begin writing here">
-            <h3>How are you feeling?</h3>
+            <h3 id="formh3">How are you feeling?</h3>
             <p>use the mood the wheel to express yourself! 
               choose from: the words displayed in each category!</p>
-            <input type="text" name="currentMood">
+            <input type="text" name="currentMood" id="mood">
             
             <button class="submitbtn" type="submit">Submit</button>
           </form>  
@@ -68,10 +72,10 @@
 
 
 <section class="newPost">
-   </section>
+   </section><h1 id="moodh1">Logged Moods Displayed Below:</h1>
       <img class="moodwheel" src="img/moodlog.png" alt="">
       <section>
-  <h1 id="moodh1">Logged Moods Displayed Below:</h1>
+  
   <% for(var h=1; h<= 31; h++) {%>
     <% for(var i=0; i<entries.length; i++ ) {%>
        <%let arr = entries[i].date.split('-')%>
@@ -80,7 +84,7 @@
         <div style="background-color:<%= entries[i].color %> ;opacity: <%= entries[i].scale %> ;" class="colors">
         </div>
       <%} else{%>
-        <div style="background-color:rgb(179, 176, 176) ;" class="colors">
+        <div style="background-color:rgb(255, 253, 253) ; opacity: .6;" class="colors">
         </div>
       <%}%>    
   <% } %> 
@@ -90,7 +94,7 @@
 
 
 <section id="posts">
-  <h3>Posts</h3>
+  <h3 id="postsh3">Posts</h3>
   <ul class="messages">
   <% for(var i=0; i<entries.length; i++) {%>
     <li class="message">

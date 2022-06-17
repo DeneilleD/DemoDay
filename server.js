@@ -12,6 +12,7 @@ var flash    = require('connect-flash');
 var ObjectId = require('mongodb').ObjectId
 var multer = require('multer')
 
+
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
@@ -21,6 +22,20 @@ var configDB = require('./config/database.js');
 
 var db
 var path = require('path')
+const twilio = require('twilio');
+const accountSid = 'AC4944d7d36c195d3dc2e709d413055c00'; // Your Account SID from www.twilio.com/console
+const authToken = 'b3027c493ddcb2fc167ca457724bfe1f'; // Your Auth Token from www.twilio.com/console
+const client = new twilio('AC4944d7d36c195d3dc2e709d413055c00', 'b3027c493ddcb2fc167ca457724bfe1f');
+
+client.messages
+  .create({
+    body: 'Hello from Node',
+    to: '+7742231687', // Text this number
+    from: '+13192718761', // From a valid Twilio number
+  })
+  .then((message) => console.log(message.sid));
+
+
 // configuration ===============================================================
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);

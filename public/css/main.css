@@ -6,34 +6,59 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 /*****moood log******/
+
 .newPost{
+
+  margin-left: 30px;
 margin-top:50px;
 clear:both;
 width:100%;
 float:left;
 height:50px;
 }
+
 #profileh1{
+  animation-duration: 3s;
+  animation-name: slidein;
   color:rgb(165, 162, 162);
+  font-family:  'Playfair Display', serif;;
+  margin-top: 30px;
 }
 
 #affirmsection{
+  animation-duration: 3s;
+  animation-name: slidein;
   border-radius: 70px;
   border:1px solid white;
   height:200px;
   width:75%;
+  
  margin-left:160px;
  margin-bottom: 150px;
 }
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
 #quote{
-  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;  text-align: center;
   color:rgb(169, 239, 244);
+  opacity: 2;
 }
 #author{
-  color:rgb(169, 239, 244);
+  font-family: 'Roboto Condensed', sans-serif;  color:rgb(169, 239, 244);
   text-align: center;
+  opacity: 2;
 }
 #affirmtitle{
+  font-family: 'Dancing Script', cursive;
   margin-top: 30px;
   text-align: center;
   color:rgb(29, 176, 202);
@@ -41,6 +66,7 @@ height:50px;
 .page-header{
   border-radius: 70px;
   background-image: url("/img/affirmbackground.PNG");
+  opacity: .6;
 }
 
 
@@ -59,8 +85,8 @@ height:50px;
 .colors{
   border: 1px solid black;
   float:left;
-  width: 15px;
-  height:15px;
+  width: 20px;
+  height:20px;
 }
 
 #moodtable{
@@ -86,6 +112,14 @@ border-radius: 300px;
   color:white;
   border:black;
 }
+.btn btn-default btn-sm{
+  background:black;
+  color:white;
+}
+.btn btn-default btn-sm:hover{
+background:purple;
+color:black;
+}
 .btn-warning:hover {
   background:purple;
   color:white;
@@ -94,6 +128,10 @@ border-radius: 300px;
   color:white;
   font-size:15px;
   font-weight: bold;
+}
+.newPost div{
+  height:10px;
+  width:10px;
 }
 .newPost section{
   width:50%;
@@ -106,6 +144,12 @@ border-radius: 300px;
   margin-top: 200px;
   clear:both;
 }
+#postsh3{
+  margin-top: 500px;
+  clear:both;
+  font-size: 20px;
+  color:white;
+}
 #posts li{
   padding:20px;
   float:left;
@@ -115,12 +159,13 @@ border-radius: 300px;
   float:left;
 }
 #moodh1{
-  font-size: 100px;
+  font-size: 60px;
 }
 #messagepost{
   color:rgb(250, 246, 246);
 }
 .message{
+  opacity: .6;
 border-radius: 130px;
 border: 1px solid rgb(12, 12, 12);
 height: 100px;
@@ -140,9 +185,13 @@ font-size: 15px;
   display:none;
 }
 .feedmessages{
+  animation-duration: 3s;
+  animation-name: slidein;
+  opacity: .6;
   border-radius: 30px;
 border: 2px solid rgb(228, 221, 228);
 height: 200px;
+background: black;
 width:250px;
 
 color:white;
@@ -157,12 +206,19 @@ float:left;
   margin-top:80px;
   margin-left:370px;
 }
-.formsection h3,p{
+.formsection h3,p,form{
   text-align: center;
 }
 .formsection h2{
   text-align: center;
   text-decoration:underline;
+}
+.formsection{
+  align-items: center;
+
+  background: rgb(14, 14, 14) ;
+  opacity: .6;
+  border-radius: 20px;
 }
 .messageboard{
   width:100%;
@@ -171,8 +227,17 @@ float:left;
 
 .profileheader{
   clear:both;
+  text-decoration: none;
+  font-size: 30px;
+  color:white;
+  font-family: 'Bubblegum Sans', cursive;
 }
+#formh3{
+  font-family: 'Bubblegum Sans', cursive;
 
+  color:white;
+  font-size:20px;
+}
 #profileform{
  clear:both;
 }
@@ -185,12 +250,20 @@ font-style: italic;
 display:block;
 margin:20px;
 }
+#date{
+  background:white;
+  opacity: .6;
+  width: 80%;
+}
+#mood{
+  width: 80%;
+}
 #title{
-  width:30%;
+  width:80%;
 }
 #caption{
   height:200px;
-  width:70%;
+  width:80%;
 }
 
 #posttitle{
@@ -332,8 +405,12 @@ a {
     a:hover strong {
       color: inherit; }
 
+#middleheader{
+color:  #faacddf9;
+
+}
 strong, b {
-  color:  #f508b6ad;
+  color:  #faacddf9;
   font-weight: 600; }
 
 em, i {
