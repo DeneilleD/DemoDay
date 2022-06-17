@@ -1,19 +1,27 @@
 <!doctype html>
 <html>
 <head>
-    <title>21 Savage Fan Site</title>
+    <title>The Safe Space</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1> Journal Entry</h1>
         <a href="/feed">Feed</a>
+
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
+
+<section>
+  <h4>Daily Affirmation</h4>
+ <h2 id="quote"></h2> 
+ <h3 id="author"></h3>
+</section>
+
 
     <div class="row">
 
@@ -36,30 +44,60 @@
 
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="messageboard">
+        
+      <section class="formsection">
+          <h2 class="profileheader">Let it out </h2>
+        <% if (user.local.email) { %>
+          <form action="/makePost" method="POST" id="profileform">
+            <input type="date" name="date" placeholder="date">
+            <input type="text" name="title" placeholder="title" id="title">
+            <input id="caption" type="text" name="caption" placeholder="begin writing here">
+            <h3>How are you feeling?</h3>
+            <input type="text" name="currentMood">
+            
+            <button type="submit">Submit</button>
+          </form>  
+          
+        </section>
+      <img class="moodwheel" src="img/moodlog.png" alt="">
+        <% } %>
+  </div>
+</div>
+
+<section class="posts">
           <h3>Posts</h3>
           <ul class="messages">
-          <% for(var i=0; i<posts.length; i++) {%>
+          <% for(var i=0; i<entries.length; i++) {%>
             <li class="message">
-              <a href="/post/<%= posts[i]._id %>">
-                <h4><%= posts[i].caption %></h4>
-                <img src="<%= posts[i].img %>" alt="">
-              </a>  
+              
+                <h4><%= entries[i].date %></h4>
+                <h4><%= entries[i].title %></h4>
+               
+              <span><i class="fa fa-trash" aria-hidden="true"></i></span><a href="/post/<%= entries[i]._id %>">see post</a> 
             </li>
           <% } %>
           </ul>
+          
+      </section>
 
-          <h2>Make A Post</h2>
-        <% if (user.local.email) { %>
-          <form action="/makePost" enctype="multipart/form-data" method="POST">
-            <input type="text" name="caption" placeholder="caption">
-            <input type="file" name="file-to-upload">
-            <button type="submit">Submit</button>
-          </form>
+<section class="newPost">
+  <% for(var h=1; h<= 31; h++) {%>
+    <% for(var i=0; i<entries.length; i++ ) {%>
+       <%let arr = entries[i].date.split('-')%>
+       <%let day = Number(arr[2])%>
+       <%if(day === h){%>
+        <div style="background-color:<%= entries[i].color %> ;opacity: <%= entries[i].scale %> ;" class="colors">
         </div>
-        <% } %>
+      <%} else{%>
+        <div style="background-color:rgb(179, 176, 176) ;" class="colors">
+        </div>
+      <%}%>    
+  <% } %> 
+   <% } %>
+</section>
 
-</div>
+
 
 <script src="main.js"></script>
 

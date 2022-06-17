@@ -25,7 +25,8 @@
             <li class="message">
               <a href="/post/<%= posts[i]._id %>">
                 <h4><%= posts[i].caption %></h4>
-                <img src="<%= posts[i].img %>" alt="">
+                <h4><%= entries[i].date %></h4>
+              <h4><%= entries[i].title %></h4>
                 <a href="/page/<%= posts[i].postedBy %>"></a>
               </a>  
             </li>

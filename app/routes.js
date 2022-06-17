@@ -18,44 +18,47 @@ var upload = multer({storage: storage});
         res.render('main.ejs');
     });
 
+    
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('posts').find({postedBy: req.user._id}).toArray((err, result) => {
+        db.collection('entries').find({postedBy: req.user._id}).sort({date:1}).toArray((err, result) => {
           if (err) return console.log(err)
+          console.log(result)
           res.render('profile.ejs', {
             user : req.user,
-            posts: result
+            entries: result
           })
         })
     });
     //feed page
     app.get('/feed', function(req, res) {
-      db.collection('posts').find().toArray((err, result) => {
+      db.collection('entries').find().toArray((err, result) => {
         if (err) return console.log(err)
         res.render('feed.ejs', {
-          posts: result
+          entries: result
         })
       })
   });
   //post page
   app.get('/post/:postId', isLoggedIn, function(req, res) {
-    let postId = ObjectId(req.params.zebra)
-    //when trying to pull a query param out of a url
-    console.log(postId)
-    db.collection('posts').find({_id: postId}).toArray((err, result) => {
+    // let postId = ObjectId(req.params.zebra)
+    // //when trying to pull a query param out of a url
+    // console.log(postId)
+    let postId = ObjectId(req.params.postId)
+    db.collection('entries').find({_id: postId}).toArray((err, result) => {
       if (err) return console.log(err)
       res.render('post.ejs', {
-        posts: result
+        entries: result
       })
     })
 });
 //profile page
 app.get('/page/:id', isLoggedIn, function(req, res) {
   let postId = ObjectId(req.params.id)
-  db.collection('posts').find({postedBy: postId}).toArray((err, result) => {
+  db.collection('entries').find({postedBy: postId}).toArray((err, result) => {
     if (err) return console.log(err)
     res.render('page.ejs', {
-      posts: result
+      entries: result
     })
   })
 });
@@ -66,9 +69,47 @@ app.get('/page/:id', isLoggedIn, function(req, res) {
         res.redirect('/');
     });
 // post routes
-app.post('/makePost', upload.single('file-to-upload'), (req, res) => {
+app.post('/makePost', (req, res) => {
+  
+let colors = {
+  green : ['strong','confident','worthy','valuable' ,'appreciated'],
+  purple : ['fear', 'anxious','insecure', 'unworthy', 'apprehensive'],
+  red : ['anger','hateful', 'critical', 'jealous', 'hurt'],
+  orange : ['sadness', 'guilty', 'vulnerable', 'depressed', 'ashamed'],
+  yellow : ['bored', 'embarrassed', 'disapproving', 'offended', 'disgusted'],
+  pink : ['happy', 'joyful', 'accepted', 'valued', 'content', 'loving'],
+  blue : ['surprise', 'excited', 'amazed', 'confused', 'energetic', 'dismayed']
+}
+  let userInput = req.body.currentMood
+  let keys = Object.keys(colors)
+  let color
+  let scale 
+  for(let i=0; i< keys.length; i++){
+    if(colors[keys[i]].includes(userInput)){
+        color = keys[i]
+        switch (colors[keys[i]].indexOf(userInput)) {
+          case 0:
+            scale = 1;
+            break;
+          case 1:
+              scale = .8;
+            break;
+          case 2:
+              scale = .6;
+            break;
+          case 3:
+              scale = .4;
+            break;
+          case 4:
+              scale = .3;
+            break;
+          case 5:
+              scale = .2;
+            break;
+        }          }
+  }
   let user = req.user._id
-  db.collection('posts').save({caption: req.body.caption, img: 'images/uploads/' + req.file.filename, postedBy: user}, (err, result) => {
+  db.collection('entries').insertOne({date: req.body.date, title: req.body.title, caption: req.body.caption, postedBy: user, currentMood: userInput, color: color, scale:scale}, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
     res.redirect('/profile')
@@ -101,12 +142,47 @@ app.post('/makePost', upload.single('file-to-upload'), (req, res) => {
       })
     })
 
-    app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+    app.delete('/makePost', (req, res) => {
+      console.log(req.body.title)
+      db.collection('entries').findOneAndDelete({title:req.body.title, date: req.body.date}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })
     })
+/**************Mood Tracker********* */
+
+
+
+
+
+
+
+
+
+app.post('/mood', (req, res) => {
+  console.log(req.user)
+  let user = req.user._id
+  db.collection('entries').insertOne({currentMood: req.body.currentMood, postedBy: user}, (err, result) => {
+    if (err) return console.log(err)
+    console.log('saved to database')
+    res.redirect('/mood')
+  })
+})
+
+
+app.get('/mood', function(req, res) {
+  db.collection('entries').find().toArray((err, result) => {
+    if (err) return console.log(err)
+    res.render('mood.ejs', {
+      entries: result
+    })
+  })
+});
+
+
+
+
+
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================

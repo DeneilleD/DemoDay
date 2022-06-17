@@ -1,6 +1,9 @@
 // const fire= document.getElementsByClassName("fa-fire");
-// const trash = document.getElementsByClassName("fa-trash");
+const trash = document.getElementsByClassName("fa-trash");
 // const bookmark = document.getElementsByClassName("fa-bookmark");
+
+
+
 
 
 // Array.from(fire).forEach(function(element) {
@@ -56,21 +59,52 @@
 //       });
 // });
 
-// Array.from(trash).forEach(function(element) {
-//       element.addEventListener('click', function(){
-//         const name = this.parentNode.parentNode.childNodes[1].innerText
-//         const msg = this.parentNode.parentNode.childNodes[3].innerText
-//         fetch('messages', {
-//           method: 'delete',
-//           headers: {
-//             'Content-Type': 'application/json'
-//           },
-//           body: JSON.stringify({
-//             'name': name,
-//             'msg': msg
-//           })
-//         }).then(function (response) {
-//           window.location.reload()
-//         })
-//       });
-// });
+
+
+
+Array.from(trash).forEach(function(element) {
+      element.addEventListener('click', function(){
+        const date = this.parentNode.parentNode.childNodes[1].innerText
+        const title = this.parentNode.parentNode.childNodes[3].innerText
+        console.log(title)
+        fetch('makePost', {
+          method: 'delete',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            'date': date,
+            'title': title
+          })
+        }).then(function (response) {
+          window.location.reload()
+        })
+      });
+});
+
+
+function getAffirm() {
+  let url = `https://type.fit/api/quotes`
+  fetch(url)
+    .then(res => res.json()) // parse response as JSON 
+    .then(data => {
+      console.log(data)
+
+      let randomAffirm = Math.floor(Math.random() * data.length)
+      console.log(randomAffirm)
+      console.log(data[randomAffirm])
+
+      let affirmation = data[randomAffirm]
+      document.querySelector('#quote').innerText = 
+      affirmation.text
+
+      document.querySelector('#author').innerText = affmation.author
+
+    })
+    .catch(err => {
+      console.log(`error ${err}`)
+    });
+}
+ document.querySelector('button').addEventListener('click', getAffirm)
+
+getAffirm()

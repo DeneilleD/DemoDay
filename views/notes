@@ -1,0 +1,58 @@
+ <tr class="logs">
+        <% for(var i=0; i<logs.length; i++) {%>
+            <td class="loggedmood <%= logs[i].completed ? 'purple' : '' %>"><%= logs[i].mood %></td>
+
+            <td class="loggedmood <%= logs[i].completed ? 'purple' : '' %>"><%= logs[i].mood %></td>
+
+          	<td class="loggedmood <%= logs[i].completed ? 'purple' : '' %>"><%= logs[i].mood %></td> </td>
+      
+            <td class="loggedmood <%= logs[i].completed ? 'purple' : '' %>"><%= logs[i].mood %></td>
+
+            <td class="loggedmood <%=logs[i].completed ? 'purple' : '' %>"><%= logs[i].mood %></td>> </td>
+
+          	<td class="loggedmood <%= logs[i].completed ? 'purple' : '' %>"><%= logs[i].mood %></td>
+
+            <td class="logggedmood <%= logs[i].completed ? 'purple' : '' %>"><%= logs[i].mood %></td>
+        <tr>
+
+
+
+          app.post('/moods', (req, res) => {
+            let user = req.user._id
+            db.collection('entries').insertOne({currentfeeling: req.body.currentfeeling, postedBy: user}, (err, result) => {
+              if (err) return console.log(err)
+              console.log('saved to database')
+              res.redirect('/mood')
+            })
+          })
+          
+          
+          app.get('/moods', function(req, res) {
+            db.collection('entries').find().toArray((err, result) => {
+              if (err) return console.log(err)
+              res.render('mood.ejs', {
+                entries: result,
+              })
+            })
+          });
+          
+          
+          // app.put('/complete', (req, res) => { // creating a new document 
+          //   db.collection('entries')
+          //   .findOneAndUpdate({currentfeeling: req.body.currentfeeling, mood: req.body.mood, postedBy: user}, {
+          //     $set: {
+          //       completed: true
+          //       // if true turn into false, if false turn into true ( so ppl have an option to unfavorite)
+          //     }
+          //   }, {
+          //     sort: {_id: -1},
+          //     upsert: true
+          //   }, (err, result) => {
+          //     if (err) return res.send(err)
+          //     res.send(result)
+          //   })
+          // })
+          
+          
+          
+          
