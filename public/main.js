@@ -98,7 +98,7 @@ function getAffirm() {
       document.querySelector('#quote').innerText = 
       affirmation.text
 
-      document.querySelector('#author').innerText = affmation.author
+      document.querySelector('#author').innerText = affirmation.author
 
     })
     .catch(err => {

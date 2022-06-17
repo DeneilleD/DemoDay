@@ -10,15 +10,15 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1> Journal Entry</h1>
+        <h1 id="profileh1"> Journal Entry</h1>
         <a href="/feed">Feed</a>
 
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
-<section>
-  <h4>Daily Affirmation</h4>
- <h2 id="quote"></h2> 
+<section id="affirmsection">
+  <h2 id="affirmtitle">Daily Affirmation</h2>
+ <h3 id="quote"></h3> 
  <h3 id="author"></h3>
 </section>
 
@@ -47,41 +47,31 @@
         <div class="messageboard">
         
       <section class="formsection">
-          <h2 class="profileheader">Let it out </h2>
+          <h2 class="profileheader">Let it out.. </h2>
         <% if (user.local.email) { %>
           <form action="/makePost" method="POST" id="profileform">
             <input type="date" name="date" placeholder="date">
             <input type="text" name="title" placeholder="title" id="title">
             <input id="caption" type="text" name="caption" placeholder="begin writing here">
             <h3>How are you feeling?</h3>
+            <p>use the mood the wheel to express yourself! 
+              choose from: the words displayed in each category!</p>
             <input type="text" name="currentMood">
             
-            <button type="submit">Submit</button>
+            <button class="submitbtn" type="submit">Submit</button>
           </form>  
           
-        </section>
-      <img class="moodwheel" src="img/moodlog.png" alt="">
+       
         <% } %>
   </div>
 </div>
 
-<section class="posts">
-          <h3>Posts</h3>
-          <ul class="messages">
-          <% for(var i=0; i<entries.length; i++) {%>
-            <li class="message">
-              
-                <h4><%= entries[i].date %></h4>
-                <h4><%= entries[i].title %></h4>
-               
-              <span><i class="fa fa-trash" aria-hidden="true"></i></span><a href="/post/<%= entries[i]._id %>">see post</a> 
-            </li>
-          <% } %>
-          </ul>
-          
-      </section>
 
 <section class="newPost">
+   </section>
+      <img class="moodwheel" src="img/moodlog.png" alt="">
+      <section>
+  <h1 id="moodh1">Logged Moods Displayed Below:</h1>
   <% for(var h=1; h<= 31; h++) {%>
     <% for(var i=0; i<entries.length; i++ ) {%>
        <%let arr = entries[i].date.split('-')%>
@@ -95,9 +85,25 @@
       <%}%>    
   <% } %> 
    <% } %>
+  </section>
 </section>
 
 
+<section id="posts">
+  <h3>Posts</h3>
+  <ul class="messages">
+  <% for(var i=0; i<entries.length; i++) {%>
+    <li class="message">
+      
+        <h4 id="messagepost"><%= entries[i].date %></h4>
+        <h4 id="messagepost"><%= entries[i].title %></h4>
+       
+      <span><i class="fa fa-trash" aria-hidden="true"></i></span><a href="/post/<%= entries[i]._id %>">see post</a> 
+    </li>
+  <% } %>
+  </ul>
+  
+</section>
 
 <script src="main.js"></script>
 

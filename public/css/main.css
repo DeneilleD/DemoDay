@@ -7,8 +7,51 @@
 */
 /*****moood log******/
 .newPost{
+margin-top:50px;
 clear:both;
+width:100%;
+float:left;
+height:50px;
+}
+#profileh1{
+  color:rgb(165, 162, 162);
+}
 
+#affirmsection{
+  border-radius: 70px;
+  border:1px solid white;
+  height:200px;
+  width:75%;
+ margin-left:160px;
+ margin-bottom: 150px;
+}
+#quote{
+  text-align: center;
+  color:rgb(169, 239, 244);
+}
+#author{
+  color:rgb(169, 239, 244);
+  text-align: center;
+}
+#affirmtitle{
+  margin-top: 30px;
+  text-align: center;
+  color:rgb(29, 176, 202);
+}
+.page-header{
+  border-radius: 70px;
+  background-image: url("/img/affirmbackground.PNG");
+}
+
+
+.submitbtn{
+  color:white;
+  background: #5a045e;
+}
+
+.submitbtn:hover{
+  color:orange;
+  background: #7f888f;
 }
 .formsection{
   clear:both;
@@ -52,29 +95,43 @@ border-radius: 300px;
   font-size:15px;
   font-weight: bold;
 }
-
+.newPost section{
+  width:50%;
+  padding:10px;
+}
 .form-control input{
   color:black;
 }
-.posts{
+#posts ul,h3{
+  margin-top: 200px;
   clear:both;
-  float:right;
+}
+#posts li{
+  padding:20px;
+  float:left;
 }
 .moodwheel{
   border-radius: 300px;
-  clear:both;
-  float:right;
+  float:left;
+}
+#moodh1{
+  font-size: 100px;
+}
+#messagepost{
+  color:rgb(250, 246, 246);
 }
 .message{
-border-radius: 30px;
-border: 2px solid purple;
+border-radius: 130px;
+border: 1px solid rgb(12, 12, 12);
 height: 100px;
+background-color: black;
 width:200px;
-color:black;
+color:white;
+text-align: center;
+font-weight: bold;
 list-style: none;
-padding:20px;
-margin:auto;
-clear:both;
+font-size: 15px;
+
 }
 /* .col-sm-6{
   width:100%;
@@ -100,7 +157,13 @@ float:left;
   margin-top:80px;
   margin-left:370px;
 }
-
+.formsection h3,p{
+  text-align: center;
+}
+.formsection h2{
+  text-align: center;
+  text-decoration:underline;
+}
 .messageboard{
   width:100%;
   height:700px;
@@ -130,6 +193,26 @@ margin:20px;
   width:70%;
 }
 
+#posttitle{
+  text-align: center;
+  margin-top: 100px;
+}
+#postul{
+  text-align: center;
+}
+#postpagesection{
+  list-style-type: none;
+  background:#c89cd1;
+  border-radius: 400px;
+  height:700px;
+  margin-left:200px;
+  width:70%;
+
+
+}
+#postpage{
+  background: rgb(239, 231, 231);
+}
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
