@@ -233,6 +233,7 @@ app.get('/mood', function(req, res) {
         var user            = req.user;
         user.local.email    = undefined;
         user.local.password = undefined;
+        user.local.phone    = undefined;
         user.save(function(err) {
             res.redirect('/profile');
         });
