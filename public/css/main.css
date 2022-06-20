@@ -63,13 +63,25 @@ height:50px;
   text-align: center;
   color:rgb(29, 176, 202);
 }
+.loginform{
+  background-image: url("/img/formbackground.PNG");
+  width:80%;
+  padding:20px;
+  border-radius: 20px;
+}
+
 .page-header{
   border-radius: 70px;
   background-image: url("/img/affirmbackground.PNG");
   opacity: .6;
 }
 
-
+#credentials ul,li{
+  color:rgb(71, 4, 76);
+}
+#pcredentials{
+  color:rgb(65, 2, 71);
+}
 .submitbtn{
   color:white;
   background: #5a045e;
@@ -201,10 +213,21 @@ float:left;
 }
 .moodimg{
   height:450px;
+  width:450px;
   border-radius: 200px;
   align-items: center; 
   margin-top:80px;
-  margin-left:370px;
+  margin-left:300px;
+}
+#moodp h3{
+  color:#bfbcbf;
+  font-size:30px;
+}
+#moodp{
+  margin-left:340px;
+  width:50%;
+  margin-top: 150px;
+  clear:both;
 }
 .formsection h3,p,form{
   text-align: center;
@@ -2143,25 +2166,43 @@ button,
   -ms-flex-shrink: 1;
   flex-shrink: 1;
   width: 100%; }
+  @media screen and (max-width: 2000px){
+  #main > section {
+
+
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  }
   #main > .inner {
+    padding-left: 150px;
+    padding-right: 150px;
     padding: 0 6em 0.1em 6em ;
     margin: 0 auto;
     max-width: 110em; }
     #main > .inner > section {
+      padding-left: 150px;
+      padding-right: 150px;
       padding: 6em 0 4em 0 ;
       border-top: solid 2px rgba(210, 215, 217, 0.75); }
       #main > .inner > section:first-of-type {
         border-top: 0 !important; }
   @media screen and (max-width: 1680px) {
     #main > .inner {
+      padding-left: 50px;
+      padding-right: 50px;
       padding: 0 5em 0.1em 5em ; }
       #main > .inner > section {
         padding: 5em 0 3em 0 ; } }
   @media screen and (max-width: 1280px) {
     #main > .inner {
+      padding-left: 50px;
+      padding-right: 50px;
       padding: 0 4em 0.1em 4em ; }
       #main > .inner > section {
-        padding: 4em 0 2em 0 ; } }
+        padding: 4em 0 2em 0 ; 
+      padding-left: 50px;
+    padding-right: 50px;} }
   @media screen and (max-width: 736px) {
     #main > .inner {
       padding: 0 2em 0.1em 2em ; }

@@ -30,7 +30,7 @@ const client = new twilio('AC4944d7d36c195d3dc2e709d413055c00', 'b3027c493ddcb2f
 client.messages
   .create({
     body: 'Hello from Node',
-    to: '+7742231687', // Text this number
+    to: 'req.user.local.phone', // Text this number
     from: '+13192718761', // From a valid Twilio number
   })
   .then((message) => console.log(message.sid));

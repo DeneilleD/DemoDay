@@ -69,6 +69,22 @@ app.get('/page/:id', isLoggedIn, function(req, res) {
         res.redirect('/');
     });
 // post routes
+//message form
+
+app.post('/msgPost', (req, res) => {
+    let user = req.user._id
+    db.collection('entries').insertOne({phone:req.user.local.phone , postedBy: user}, (err, result) => {
+      if (err) return console.log(err)
+      console.log('saved to database')
+  
+      res.redirect('/profile')
+      
+    })
+    alert('Sign-up Success')
+  })
+  
+  
+//
 app.post('/makePost', (req, res) => {
   
 let colors = {
