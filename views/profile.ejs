@@ -60,15 +60,16 @@
       <section class="formsection">
           <h2 class="profileheader">Let it out.. </h2>
         <% if (user.local.email) { %>
-          <form action="/makePost" method="POST" id="profileform">
+          <form action="/makePost" method="POST" id="profileform"  onsubmit="alert('you submitted the form')" autocomplete="off" >
             <input type="date" name="date" placeholder="date" id="date">
             <input type="text" name="title" placeholder="title" id="title">
             <input id="caption" type="text" name="caption" placeholder="begin writing here">
             <h3 id="formh3">How are you feeling?</h3>
             <p>use the mood the wheel to express yourself! 
               choose from: the words displayed in each category!</p>
-            <input type="text" name="currentMood" id="mood">
-            
+              <div class="autocomplete" style="width:300px;">
+                <input id="currentMood" type="text" name="currentMood" placeholder="Enter Mood Here">
+              </div>            
             <button class="submitbtn" type="submit">Submit</button>
           </form>  
           
@@ -79,36 +80,36 @@
 
 
 <section class="newPost">
-   </section><h1 id="moodh1">Logged Moods Displayed Below:</h1>
+   <h1 id="moodh1">Logged Moods Displayed Below:</h1>
       <img class="moodwheel" src="img/moodlog.png" alt="">
       <p>days of the month</p>
+
       <section>
-  
-  <% for(var h=1; h<= 31; h++) {%>
-    <% for(var i=0; i<entries.length; i++ ) {%>
-       <%let arr = entries[i].date.split('-')%>
-       <%let day = Number(arr[2])%>
-       <%if(day === h){%>
-        <div style="background-color:<%= entries[i].color %> ;opacity: <%= entries[i].scale %> ;" class="colors">
-        </div>
-      <%} else{%>
-        <div style="background-color:rgb(255, 253, 253) ; opacity: .6;" class="colors">
-        </div>
-      <%}%>    
-  <% } %> 
-   <% } %>
-  </section>
+        <% for(var h=1; h<= 31; h++) {%>
+          <% for(var i=0; i<entries.length; i++ ) {%>
+            <%let arr = entries[i].date.split('-')%>
+            <%let day = Number(arr[2])%>
+            <%if(day === h){%>
+              <div style="background-color:<%= entries[i].color %> ;opacity: <%= entries[i].scale %> ;" class="colors">
+              </div>
+            <%} else{%>
+              <div style="background-color:rgb(255, 253, 253) ; opacity: .8;" class="colors">
+              </div>
+            <%}%>    
+        <% } %> 
+        <% } %>
+      </section>
 </section>
 
 
 <section id="posts">
   <h3 id="postsh3">Posts</h3>
   <ul class="messages">
-  <% for(var i=0; i<entries.length; i++) {%>
+  <% const lastThree = Math.min(entries.length,3); for(var i=0; i<lastThree; i++) {%>
     <li class="message">
       
-        <h4 id="messagepost"><%= entries[i].date %></h4>
-        <h4 id="messagepost"><%= entries[i].title %></h4>
+        <h4 class="messagepost"><%= entries[i].date %></h4>
+        <h4 class="messagepost"><%= entries[i].title %></h4>
        
       <span><i class="fa fa-trash" aria-hidden="true"></i></span><a href="/post/<%= entries[i]._id %>">see post</a> 
     </li>
@@ -118,6 +119,11 @@
 </section>
 
 <script src="main.js"></script>
+
+<script>
+  autocomplete(document.getElementById("currentMood"), moods);
+</script>
+
 
 </body>
 </html>

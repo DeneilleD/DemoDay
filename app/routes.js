@@ -36,7 +36,7 @@ const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', '976088d76668af8
     });
     //feed page
     app.get('/feed', function(req, res) {
-      db.collection('entries').find().toArray((err, result) => {
+      db.collection('entries').find().sort({'date': -1}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('feed.ejs', {
           entries: result
@@ -139,13 +139,11 @@ let colors = {
   db.collection('entries').insertOne({date: req.body.date, title: req.body.title, caption: req.body.caption, postedBy: user, currentMood: userInput, color: color, scale:scale}, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
-    alert('new entry posted')
+
 
     res.redirect('/profile')
     
   })
-  alert('new entry posted')
-
 })
 
 
