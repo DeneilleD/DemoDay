@@ -14,7 +14,7 @@ const twilio = require('twilio');
 
 const accountSid = 'AC9e5d1d413296c0f29ae8ebd56dd5f96f'; // Your Account SID from www.twilio.com/console
 const authToken = '976088d76668af8470b1b0c9c3e0862e'; // Your Auth Token from www.twilio.com/console
-const consumer = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', '976088d76668af8470b1b0c9c3e0862e');
+const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', '976088d76668af8470b1b0c9c3e0862e');
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
