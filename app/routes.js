@@ -10,7 +10,11 @@ var storage = multer.diskStorage({
   }
 });
 var upload = multer({storage: storage}); 
+const twilio = require('twilio');
 
+const accountSid = 'AC9e5d1d413296c0f29ae8ebd56dd5f96f'; // Your Account SID from www.twilio.com/console
+const authToken = '976088d76668af8470b1b0c9c3e0862e'; // Your Auth Token from www.twilio.com/console
+const consumer = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', '976088d76668af8470b1b0c9c3e0862e');
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
@@ -72,11 +76,12 @@ app.get('/page/:id', isLoggedIn, function(req, res) {
 //message form
 
 app.post('/msgPost', (req, res) => {
-    let user = req.user._id
-    db.collection('entries').insertOne({phone:req.user.local.phone , postedBy: user}, (err, result) => {
+    let consumer = req.user._id
+    db.collection('entries').insertOne({phone:req.user.local.phone , postedBy: consumer}, (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
-      client.messages
+      console.log(consumer)
+     consumer.messages
       .create({
         body: 'Hello from Node',
         to: 'req.user.local.phone', // Text this number
