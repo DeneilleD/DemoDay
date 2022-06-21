@@ -23,15 +23,15 @@ var configDB = require('./config/database.js');
 var db
 var path = require('path')
 const twilio = require('twilio');
-const accountSid = 'AC4944d7d36c195d3dc2e709d413055c00'; // Your Account SID from www.twilio.com/console
-const authToken = 'b3027c493ddcb2fc167ca457724bfe1f'; // Your Auth Token from www.twilio.com/console
-const client = new twilio('AC4944d7d36c195d3dc2e709d413055c00', 'b3027c493ddcb2fc167ca457724bfe1f');
+const accountSid = 'AC9e5d1d413296c0f29ae8ebd56dd5f96f'; // Your Account SID from www.twilio.com/console
+const authToken = '976088d76668af8470b1b0c9c3e0862e'; // Your Auth Token from www.twilio.com/console
+const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', '976088d76668af8470b1b0c9c3e0862e');
 
 client.messages
   .create({
     body: 'Hello from Node',
     to: 'req.user.local.phone', // Text this number
-    from: '+13192718761', // From a valid Twilio number
+    from: '+13163955977', // From a valid Twilio number
   })
   .then((message) => console.log(message.sid));
 

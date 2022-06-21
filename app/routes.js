@@ -76,11 +76,17 @@ app.post('/msgPost', (req, res) => {
     db.collection('entries').insertOne({phone:req.user.local.phone , postedBy: user}, (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
-  
+      client.messages
+      .create({
+        body: 'Hello from Node',
+        to: 'req.user.local.phone', // Text this number
+        from: '+13163955977', // From a valid Twilio number
+      })
+      .then((message) => console.log(message.sid));
       res.redirect('/profile')
       
     })
-    alert('Sign-up Success')
+  
   })
   
   
@@ -171,37 +177,6 @@ let colors = {
         res.send('Message deleted!')
       })
     })
-/**************Mood Tracker********* */
-
-
-
-
-
-
-
-
-
-app.post('/mood', (req, res) => {
-  console.log(req.user)
-  let user = req.user._id
-  db.collection('entries').insertOne({currentMood: req.body.currentMood, postedBy: user}, (err, result) => {
-    if (err) return console.log(err)
-    console.log('saved to database')
-    res.redirect('/mood')
-  })
-})
-
-
-app.get('/mood', function(req, res) {
-  db.collection('entries').find().toArray((err, result) => {
-    if (err) return console.log(err)
-    res.render('mood.ejs', {
-      entries: result
-    })
-  })
-});
-
-
 
 
 
