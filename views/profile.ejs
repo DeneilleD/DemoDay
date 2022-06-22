@@ -60,7 +60,7 @@
       <section class="formsection">
           <h2 class="profileheader">Let it out.. </h2>
         <% if (user.local.email) { %>
-          <form action="/makePost" method="POST" id="profileform"  onsubmit="alert('you submitted the form')" autocomplete="off" >
+          <form action="/makePost" method="POST" id="profileform"  onsubmit="alert('you have uploaded your entry! ')" autocomplete="off" >
             <input type="date" name="date" placeholder="date" id="date">
             <input type="text" name="title" placeholder="title" id="title">
             <input id="caption" type="text" name="caption" placeholder="begin writing here">
@@ -80,34 +80,35 @@
 
 
 <section class="newPost">
-   <h1 id="moodh1">Logged Moods Displayed Below:</h1>
+  
+   <h1 id="moodh1">Logged Entries Displayed Below:</h1>
       <img class="moodwheel" src="img/moodlog.png" alt="">
-      <p>days of the month</p>
 
-      <section>
-        <% for(var h=1; h<= 31; h++) {%>
-          <% for(var i=0; i<entries.length; i++ ) {%>
-            <%let arr = entries[i].date.split('-')%>
-            <%let day = Number(arr[2])%>
-            <%if(day === h){%>
-              <div style="background-color:<%= entries[i].color %> ;opacity: <%= entries[i].scale %> ;" class="colors">
-              </div>
-            <%} else{%>
-              <div style="background-color:rgb(255, 253, 253) ; opacity: .8;" class="colors">
-              </div>
-            <%}%>    
-        <% } %> 
+      <section class="moodSquares">
+        <h2>Logged moods for the Month shown Below::</h2>
+
+        <% for(var h=1; h <= 31; h++) {%>
+          <div class="daySquare">
+            <% for(var i=0; i<entries.length; i++) {%>
+              <%let arr = entries[i].date.split('-')%>
+              <%let day = Number(arr[2])%>
+              <%if(day === h){%>
+                <div style="background-color: <%= entries[i].color %> ;opacity: <%= entries[i].scale %> ;" class="colors">
+                </div>
+            <% } %> 
+            <% } %> 
+          </div>
         <% } %>
       </section>
-</section>
+    </section>
 
 
 <section id="posts">
-  <h3 id="postsh3">Posts</h3>
   <ul class="messages">
   <% const lastThree = Math.min(entries.length,3); for(var i=0; i<lastThree; i++) {%>
     <li class="message">
-      
+      <h3 id="postsh3">Posts</h3>
+
         <h4 class="messagepost"><%= entries[i].date %></h4>
         <h4 class="messagepost"><%= entries[i].title %></h4>
        

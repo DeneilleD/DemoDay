@@ -13,8 +13,8 @@ var upload = multer({storage: storage});
 const twilio = require('twilio');
 
 const accountSid = 'AC9e5d1d413296c0f29ae8ebd56dd5f96f'; // Your Account SID from www.twilio.com/console
-const authToken = '976088d76668af8470b1b0c9c3e0862e'; // Your Auth Token from www.twilio.com/console
-const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', '976088d76668af8470b1b0c9c3e0862e');
+const authToken = '1e414c366735798337343ea2e385f086'; // Your Auth Token from www.twilio.com/console
+const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', '1e414c366735798337343ea2e385f086');
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
@@ -81,10 +81,13 @@ app.post('/msgPost', (req, res) => {
       if (err) return console.log(err)
       console.log('saved to database')
       console.log(consumer)
-     consumer.messages
+      if (req.user.local.phone === null){
+        return
+      }
+     client.messages
       .create({
         body: 'Hello from Node',
-        to: 'req.user.local.phone', // Text this number
+        to: req.user.local.phone, // Text this number
         from: '+13163955977', // From a valid Twilio number
       })
       .then((message) => console.log(message.sid));

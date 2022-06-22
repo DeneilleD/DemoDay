@@ -63,6 +63,7 @@ height:50px;
   text-align: center;
   color:rgb(29, 176, 202);
 }
+
 .loginform{
   background-image: url("/img/formbackground.PNG");
   width:80%;
@@ -92,7 +93,19 @@ height:50px;
   color:orange;
   background: #7f888f;
 }
+.moodSquares{
+  float:left;
+  clear:both;
+  height:246px;
+  width:427px;
 
+}
+.daySquare{
+  border: 1px solid black;
+  float:left;
+  width: 60px;
+  height:60px;
+}
 .colors{
   border: 1px solid black;
   float:left;
@@ -140,10 +153,10 @@ color:black;
   font-size:15px;
   font-weight: bold;
 }
-.newPost div{
+/* .newPost div{
   height:10px;
   width:10px;
-}
+} */
 .newPost section{
   width:50%;
   padding:10px;
@@ -173,13 +186,15 @@ color:black;
   font-size: 60px;
 }
 .messagepost{
+  display:inline;
   color:rgb(250, 246, 246);
 }
 .message{
+  clear:both;
   opacity: .6;
 border-radius: 130px;
 border: 1px solid rgb(12, 12, 12);
-height: 100px;
+height: 150px;
 background-color: black;
 width:200px;
 color:white;
@@ -217,6 +232,7 @@ float:left;
   align-items: center; 
   margin-top:80px;
   margin-left:300px;
+  clear:both;
 }
 #moodp h3{
   color:#bfbcbf;
@@ -287,17 +303,22 @@ margin:20px;
   height:200px;
   width:80%;
 }
-
+#posth3{
+  height:30px;
+}
 #posttitle{
   text-align: center;
   margin-top: 100px;
 }
 #postul{
   text-align: center;
+  list-style-type: none;
+
 }
 #postpagesection{
   list-style-type: none;
-  background:#c89cd1;
+  background:#f5f3f6;
+  border:#451252 2px solid ;
   border-radius: 400px;
   height:700px;
   margin-left:200px;
@@ -305,8 +326,13 @@ margin:20px;
 
 
 }
+.anchor{
+  opacity:2;
+  color:rgb(254, 255, 251);
+}
 #postpage{
-  background: rgb(239, 231, 231);
+  opacity: .6;
+  background:rgb(10, 10, 10);
 }
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
