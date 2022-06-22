@@ -11,10 +11,8 @@ var storage = multer.diskStorage({
 });
 var upload = multer({storage: storage}); 
 const twilio = require('twilio');
-
-const accountSid = 'AC9e5d1d413296c0f29ae8ebd56dd5f96f'; // Your Account SID from www.twilio.com/console
-const authToken = 'd4121e215382597bbe543c232d43e891'; // Your Auth Token from www.twilio.com/console
-const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', 'd4121e215382597bbe543c232d43e891');
+const twilio_secrets = require('../secrets/twilio');
+const client = new twilio( twilio_secrets.account_sid, twilio_secrets.auth_token );
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
@@ -25,15 +23,17 @@ const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', 'd4121e215382597
     
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('entries').find({postedBy: req.user._id}).sort({date:1}).toArray((err, result) => {
-          if (err) return console.log(err)
-          console.log(result)
-          res.render('profile.ejs', {
-            user : req.user,
-            entries: result
-          })
+      db.collection('entries').find({postedBy: req.user._id}).sort({date:1}).toArray((err, result) => {
+        if (err) return console.log(err)
+        console.log(result)
+
+        res.render('profile.ejs', {
+          user : req.user,
+          entries: result,
+          phone: req.user.toObject().phone // added the phone number to the template data 
         })
-    });
+      })
+});
     //feed page
     app.get('/feed', function(req, res) {
       db.collection('entries').find().sort({'date': -1}).toArray((err, result) => {
@@ -94,7 +94,7 @@ app.post('/msgPost', async (req, res) => {
     await client.messages.create({
       body: 'Mental Health Journey Status: "Active!" Take things one day at a time and know everyday you show up for yourself is one worth celebrating - The Safe Space ✌',
       to: phone, // Text this number
-      from: '+13163955977', // From a valid Twilio number
+      from: twilio_secrets.phone, // From a valid Twilio number
     });
 
     res.redirect('/profile')

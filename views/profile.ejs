@@ -48,16 +48,17 @@
 
             </div>
         </div>
-
-        <section class="formsection">
-          <h2 class="profileheader"> Would You Like Message Reminders To Log In?</h2>
-      
-          <form action="/msgPost" method="POST" id="msgForm">
+        <% if (!phone) { %>
+          <section class="formsection">
+            <h2 class="profileheader"> Would You Like Message Reminders To Log In?</h2>
+  
+            <form action="/msgPost" method="POST" id="msgForm">
               <label for="phone">Enter Phone Number</label>
-              <input placeholder="XXX-XXX-XXXX" type="tel"  name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+              <input placeholder="XXX-XXX-XXXX" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
               <button class="submitbtn" type="submit">yes, send me texts</button>
-          </form>
-      </section>
+            </form>
+          </section>
+  <% } %>
         
       <section class="formsection">
           <h2 class="profileheader">Let it out.. </h2>
