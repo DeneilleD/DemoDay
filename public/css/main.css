@@ -6,7 +6,9 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 /*****moood log******/
-
+#phone{
+  width:50%;
+margin-left:px;}
 .newPost{
 
   margin-left: 30px;
@@ -24,7 +26,22 @@ height:50px;
   font-family:  'Playfair Display', serif;;
   margin-top: 30px;
 }
-
+#msgForm button{
+  width:20%;
+  text-align: center;
+  font-size: 15px;
+  height:50px;
+  margin-bottom:30px;
+}
+#msgForm{
+  color:white;
+  font-size: 25px;
+}
+#msgForm input{
+  height:30px;
+margin-left:290px; 
+ width:50%;
+}
 #affirmsection{
   animation-duration: 3s;
   animation-name: slidein;
@@ -63,7 +80,9 @@ height:50px;
   text-align: center;
   color:rgb(29, 176, 202);
 }
-
+#currentMood{
+  width:300%;
+}
 .loginform{
   background-image: url("/img/formbackground.PNG");
   width:80%;

@@ -13,8 +13,8 @@ var upload = multer({storage: storage});
 const twilio = require('twilio');
 
 const accountSid = 'AC9e5d1d413296c0f29ae8ebd56dd5f96f'; // Your Account SID from www.twilio.com/console
-const authToken = '1e414c366735798337343ea2e385f086'; // Your Auth Token from www.twilio.com/console
-const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', '1e414c366735798337343ea2e385f086');
+const authToken = 'd4121e215382597bbe543c232d43e891'; // Your Auth Token from www.twilio.com/console
+const client = new twilio('AC9e5d1d413296c0f29ae8ebd56dd5f96f', 'd4121e215382597bbe543c232d43e891');
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
@@ -75,19 +75,33 @@ app.get('/page/:id', isLoggedIn, function(req, res) {
 // post routes
 //message form
 
-app.post('/msgPost', (req, res) => {
-    let consumer = req.user._id
-    
-     client.messages
-      .create({
-        body: 'Hello from Node',
-        to: req.user.local.phone, // Text this number
-        from: '+13163955977', // From a valid Twilio number
-      })
-      .then((message) => console.log(message.sid));
-      res.redirect('/profile')
-  
-  })
+app.post('/msgPost', async (req, res) => {
+  const consumer = req.user._id
+  const phone  = req.body.phone;
+
+  try {
+    // add the phone number to the users database record
+    await db.collection('users').updateOne(
+      { _id: consumer },
+      {
+        $set: {
+          phone: phone
+        }
+      }
+    );
+
+    // send an initial text message
+    await client.messages.create({
+      body: 'Mental Health Journey Status: "Active!" Take things one day at a time and know everyday you show up for yourself is one worth celebrating - The Safe Space ✌',
+      to: phone, // Text this number
+      from: '+13163955977', // From a valid Twilio number
+    });
+
+    res.redirect('/profile')
+  } catch ( e ) {
+    console.log( e );
+  }
+});
   
   
 //
