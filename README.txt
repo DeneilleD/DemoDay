@@ -2,7 +2,7 @@
 
 **Link to project: https://github.com/DeneilleD/DemoDay
  
-![snip](img/readme.PNG)
+![snip](public/img/readme.PNG)
 
  
 ## How It's Made:
