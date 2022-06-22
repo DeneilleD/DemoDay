@@ -1,30 +1,13 @@
-Editorial by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+# 🎤 The Safe Space :: Demo Day Project
 
+**Link to project: https://github.com/DeneilleD/DemoDay
+ 
+![snip](readme.PNG)
+ 
+## How It's Made:
+ 
+**Tech used:** HTML, CSS, JavaScript, Node.js, Mongodb, Express
+ 
+Our lives are what we make it. What alot of people don't know is that checking in with yourself as you would with friends or family is the isolated attention our mental needs and deserves. In order to show up for yourself you can practice your mental hygiene ('just as you would go to the gym to work on your physical').Check in here, with your own personal "burn book" acting as a safe journal implementing the freedom of expression.Do not waste any time being absent in your own space; and rather take matters into your own hands and be the bestest friend you maybe never had.
 
-Say hello to Editorial, a blog/magazine-ish template built around a toggleable "locking"
-sidebar (scroll down to see what I mean) and an accordion-style menu. Not the usual landing
-page/portfolio affair you'd expect to see at HTML5 UP, but I figured for my 41st (!!!)
-template I'd change it up a little. Enjoy :)
-
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
-
-(* = not included)
-
-AJ
-aj@lkn.io | @ajlkn
-
-
-Credits:
-
-	Demo Images:
-		Unsplash (unsplash.com)
-
-	Icons:
-		Font Awesome (fontawesome.io)
-
-	Other:
-		jQuery (jquery.com)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+Mongodb used to store user's information such as log-in's (using passport.js) and entries ( using ejs templates) being recored into te database for recollection. The client-side javaScript allows users to delete, entries as they please. And also fetches an API that is used to display 'daily affirmations' to the user once logged in.

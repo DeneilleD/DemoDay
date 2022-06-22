@@ -56,9 +56,9 @@ module.exports = function(passport) {
 				// if there is no user with that email
                 // create the user
                 var newUser            = new User();
-
                 // set the user's local credentials
                 newUser.local.email    = email;
+                console.log( req.body.phone )
                 newUser.local.phone    = req.body.phone;
                 newUser.local.password = newUser.generateHash(password); // use the generateHash function in our user model
 

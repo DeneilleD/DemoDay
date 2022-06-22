@@ -77,13 +77,7 @@ app.get('/page/:id', isLoggedIn, function(req, res) {
 
 app.post('/msgPost', (req, res) => {
     let consumer = req.user._id
-    db.collection('entries').insertOne({phone:req.user.local.phone , postedBy: consumer}, (err, result) => {
-      if (err) return console.log(err)
-      console.log('saved to database')
-      console.log(consumer)
-      if (req.user.local.phone === null){
-        return
-      }
+    
      client.messages
       .create({
         body: 'Hello from Node',
@@ -92,8 +86,6 @@ app.post('/msgPost', (req, res) => {
       })
       .then((message) => console.log(message.sid));
       res.redirect('/profile')
-      
-    })
   
   })
   
