@@ -68,6 +68,7 @@ Array.from(trash).forEach(function(element) {
         const date = this.parentNode.parentNode.childNodes[1].innerText
         const title = this.parentNode.parentNode.childNodes[3].innerText
         console.log(title)
+        console.log(date)
         fetch('makePost', {
           method: 'delete',
           headers: {
@@ -77,7 +78,7 @@ Array.from(trash).forEach(function(element) {
             'date': date,
             'title': title
           })
-        }).then(function (response) {
+        }).then(function(response) {
           window.location.reload()
         })
       });
