@@ -35,14 +35,20 @@ const client = new twilio( twilio_secrets.account_sid, twilio_secrets.auth_token
       })
 });
     //feed page
-    app.get('/feed', function(req, res) {
-      db.collection('entries').find().sort({'date': -1}).toArray((err, result) => {
+    app.get('/feed', isLoggedIn, function(req, res) {
+
+      // create a filter for your query, using the logged in user's id, 
+      // and only search for entries that were "postedBy" that user   
+      const filter = { postedBy: req.user._id }; 
+
+      db.collection('entries').find( filter ).sort({'date': -1}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('feed.ejs', {
           entries: result
         })
       })
   });
+  
   //post page
   app.get('/post/:postId', isLoggedIn, function(req, res) {
     // let postId = ObjectId(req.params.zebra)
