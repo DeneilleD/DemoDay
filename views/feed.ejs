@@ -18,8 +18,9 @@
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
-    <% if (user.local.email) { %>
+   
         <div class="col-sm-6">
+         <% if (user.local.email) { %>
           <h3>Posts</h3>
           <ul class="messages">
           <% for(var i=0; i<entries.length; i++) {%>
@@ -35,8 +36,8 @@
             
           <% } %>
           </ul>
-    </div>
     <%}%>
+    </div>
 
 <script src="main.js"></script>
 

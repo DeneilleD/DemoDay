@@ -44,11 +44,12 @@ const client = new twilio( twilio_secrets.account_sid, twilio_secrets.auth_token
       db.collection('entries').find( filter ).sort({'date': -1}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('feed.ejs', {
-          entries: result
+          entries: result,
+          user: req.user  
         })
       })
   });
-  
+
   //post page
   app.get('/post/:postId', isLoggedIn, function(req, res) {
     // let postId = ObjectId(req.params.zebra)
