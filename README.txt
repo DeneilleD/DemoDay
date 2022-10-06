@@ -1,6 +1,6 @@
 # 🎤 The Safe Space :: Demo Day Project
 
-**Link to project: https://github.com/DeneilleD/DemoDay
+**Link to project: https://the-safe-space.herokuapp.com/
  
 ![snip](public/img/readme.PNG)
 
